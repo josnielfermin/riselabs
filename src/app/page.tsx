@@ -6,8 +6,8 @@ import { Products } from "@/components/Products";
 
 export default function Home() {
   return (
-    <div className="h-full flex flex-col justify-between">
-      <div className="flex items-end max-lg:flex-col lg:justify-between justify-center pr-[250px]">
+    <div className="h-full flex flex-col max-lg:items-center justify-between">
+      <div className="flex items-end max-lg:items-center max-lg:flex-col lg:justify-between justify-center lg:pr-[250px] max-lg:gap-6">
         <Hero />
         <Rise3D />
         <div className="lg:hidden">

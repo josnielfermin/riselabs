@@ -41,7 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
     "inline-flex items-center justify-center font-medium *:transition-all focus:outline-none";
   const variants: Record<ButtonVariant, string> = {
     filled:
-      "bg-primary-1 text-gray-1 hover:bg-primary-2 disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
+      "bg-primary-2 text-white hover:bg-primary-2 disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
     outlined:
       "bg-transparent text-primary-3 hover:bg-primary-3/10 border border-primary-3 disabled:hover:bg-transparent disabled:text-gray-3 disabled:border-gray-3",
     basic:

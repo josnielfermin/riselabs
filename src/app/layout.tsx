@@ -24,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${hostGrotesk.className} antialiased`}>
+      <body
+        className={`${hostGrotesk.className} antialiased lg:overflow-hidden`}
+      >
         <Background />
         <div className="flex min-h-screen text-white">
           <Sidebar />

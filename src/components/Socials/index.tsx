@@ -4,7 +4,7 @@ import { Content } from "@/components/content";
 export const Socials = () => {
   return (
     <section className="flex flex-col gap-5">
-      <h3 className="text-2xl font-medium text-white relative pb-4">
+      <h3 className="text-2xl font-medium text-white relative pb-4 max-lg:hidden">
         {Content.socials.title}
         <div className="absolute left-0 bottom-0 h-[2px] w-[100%] [background:linear-gradient(to_right,_#7B827C_0%,_rgba(123,130,124,0)_100%)]"></div>
       </h3>

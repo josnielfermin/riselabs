@@ -3,8 +3,8 @@ import { Content } from "@/components/content";
 
 export const Team = () => {
   return (
-    <section className="flex flex-col gap-6">
-      <h3 className="text-2xl font-medium text-white pb-4 relative">
+    <section className="flex flex-col max-lg:items-center gap-6">
+      <h3 className="text-2xl max-lg:text-lg max-lg:text-center font-medium text-white pb-4 relative">
         {Content.team.title}
         <div className="absolute left-0 bottom-0 h-[2px] w-[100%] [background:linear-gradient(to_right,_#7B827C_0%,_rgba(123,130,124,0)_100%)]"></div>
       </h3>
