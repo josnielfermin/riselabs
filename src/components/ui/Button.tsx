@@ -38,7 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const base =
-    "inline-flex items-center justify-center font-medium transition-all focus:outline-none";
+    "inline-flex items-center justify-center font-medium *:transition-all focus:outline-none";
   const variants: Record<ButtonVariant, string> = {
     filled:
       "bg-primary-1 text-gray-1 hover:bg-primary-2 disabled:bg-gray-3 disabled:hover:bg-gray-3 disabled:text-gray-2",
@@ -89,6 +89,7 @@ export const Button: React.FC<ButtonProps> = ({
       data-size={size}
       className={composed}
       disabled={disabled}
+      onClick={onClick}
       {...props}
     >
       {leftIcon && (

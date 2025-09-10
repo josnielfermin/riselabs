@@ -24,6 +24,7 @@ export const Content = {
         description:
           "Nest is a DeFi platform on Hyperliquid merging yield strategies, automated voting, and a meme-powered identity, redefining how communities earn, vote, and grow on-chain.",
         icon: "icon-nest",
+        iconSize: "text-3xl !aspect-square",
         images: [
           "/static/images/modal-preview/nest-01.png",
           "/static/images/modal-preview/nest-02.png",
@@ -32,24 +33,12 @@ export const Content = {
         ],
       },
       {
-        title: "Accelera",
-        subtitle: "Converge Meets Acceleration",
-        description:
-          "Accelera is a stablecoin ecosystem that blends cutting-edge tech, financial stability, and crypto-native culture. Its aesthetic fuses dark elegance, interstellar inspiration, and on-chain visuals, connecting with a new generation of DeFi users.",
-        icon: "icon-accelera",
-        images: [
-          "/static/images/modal-preview/accelera-01.png",
-          "/static/images/modal-preview/accelera-02.png",
-          "/static/images/modal-preview/accelera-03.png",
-          "/static/images/modal-preview/accelera-04.png",
-        ],
-      },
-      {
         title: "Hype Engine",
         subtitle: "Revolutionize Your Financial Future",
         description:
           "HYPE Engine is a DeFi protocol on Hyperliquid, inspired by corporate models like MicroStrategy. It shares core tech with Nest but focuses on strategic asset accumulation ($HYPE), smart governance, and tokenomic analytics.",
         icon: "icon-hype-engine",
+        iconSize: "text-2xl !aspect-square",
         images: [
           "/static/images/modal-preview/hype-engine-01.png",
           "/static/images/modal-preview/hype-engine-02.png",
@@ -57,10 +46,25 @@ export const Content = {
           "/static/images/modal-preview/hype-engine-04.png",
         ],
       },
+      {
+        title: "Accelera",
+        subtitle: "Converge Meets Acceleration",
+        description:
+          "Accelera is a stablecoin ecosystem that blends cutting-edge tech, financial stability, and crypto-native culture. Its aesthetic fuses dark elegance, interstellar inspiration, and on-chain visuals, connecting with a new generation of DeFi users.",
+        icon: "icon-accelera",
+        iconSize: "text-3xl !aspect-square",
+        images: [
+          "/static/images/modal-preview/accelera-01.png",
+          "/static/images/modal-preview/accelera-02.png",
+          "/static/images/modal-preview/accelera-03.png",
+          "/static/images/modal-preview/accelera-04.png",
+        ],
+      },
     ],
   },
   hero: {
-    title: "Driving Innovation in DeFi and Web3",
+    title: "Driving Innovation",
+    subtitle: "in DeFi and Web3",
     description:
       "We build, launch, and scale products that create real impact.",
   },

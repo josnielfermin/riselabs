@@ -1,16 +1,6 @@
 @theme inline {
   /* Dark Theme (default) */
-  --color-primary-1: #3b82f6;
-  --color-primary-2: #1e3a8a;
-  --color-primary-3: #93c5fd;
-
-  --color-secondary-1: #4c1d95;
-  --color-secondary-2: #8b5cf6;
-  --color-secondary-3: #ddd6fe;
-
-  --color-tertiary-1: #064e3b;
-  --color-tertiary-2: #34d399;
-  --color-tertiary-3: #a7f3d0;
+  --color-primary-2: #80bfa8;
 
   --color-success-1: #064e3b;
   --color-success-2: #22c55e;
@@ -28,9 +18,10 @@
   --color-info-2: #0ea5e9;
   --color-info-3: #bae6fd;
 
-  --color-gray-1: #000000;
-  --color-gray-2: #374151;
-  --color-gray-3: #d1d5db;
+  --color-base-1: #7b827c;
+  --color-base-2: #bac3bb;
+  --color-base-3: #ebf2ec;
+  --color-base-4: #cdded0;
 }
 
 @media (prefers-color-scheme: light) {

@@ -18,7 +18,7 @@ export const Rise3D = ({
       alt="Rise Labs"
       width={width}
       height={height}
-      className={`${className} cursor-pointer`}
+      className={`${className} cursor-pointer relative lg:top-7`}
     />
   );
 };
