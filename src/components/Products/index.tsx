@@ -22,11 +22,11 @@ export const Products = ({ onHover, onLeave, onClick }: ProductsProps) => {
           {Content.products.description}
         </p>
       </div>
-      <div className="flex md:flex-col justify-center gap-6">
+      <div className="flex md:flex-col justify-center max-md:gap-6 max-md:my-3">
         {Content.products.items.map((item, index) => (
           <div
             key={item.title}
-            className={`flex items-center justify-between text-base-3 gap-6 px-3 py-4 relative group`}
+            className={`flex items-center justify-between max-md:justify-center text-base-3 gap-6 px-3 py-4 relative group max-md:w-[70px] max-md:h-[70px]`}
             onMouseEnter={(e) => onHover?.(item, e)}
             onMouseLeave={() => onLeave?.()}
             onClick={() => onClick?.(item)}
@@ -47,11 +47,15 @@ export const Products = ({ onHover, onLeave, onClick }: ProductsProps) => {
               className="absolute inset-0 m-auto md:hidden object-cover"
             />
             <div className="flex items-center gap-6">
-              <span className={`${item.icon} ${item.iconSize}`}></span>
-              <h4
-                className={`text-[clamp(0.875rem,_0.708rem_+_0.347vw,_1.125rem)] font-normal max-md:hidden ${
-                  item.title === "Hype Engine" ? "ml-1.5" : ""
+              <span
+                className={`${item.icon} ${item.iconSize} ${
+                  item.icon === "icon-hype-engine"
+                    ? "max-md:-left-1 relative"
+                    : ""
                 }`}
+              ></span>
+              <h4
+                className={`text-[clamp(0.875rem,_0.708rem_+_0.347vw,_1.125rem)] font-normal max-md:hidden `}
               >
                 {item.title}
               </h4>

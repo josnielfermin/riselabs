@@ -24,7 +24,7 @@ const Mobile = ({ openModal, setOpenModal }: ProductPreviewModalProps) => {
   }, [openModal, setIsVisible]);
 
   return (
-    <div className="w-full px-4 md:px-8 md:px-16 relative h-full overflow-hidden">
+    <div className="w-full px-4 md:px-8 lg:px-16 relative h-full overflow-hidden">
       <div
         className="flex items-center justify-between max-md:justify-center h-full container"
         ref={ref}
