@@ -2,6 +2,7 @@
 
 import { Hero } from "@/components/Hero";
 import { Rise3D } from "@/components/Rise3D";
+import InteractiveRise from "@/components/Rise3D/InteractiveRise";
 import { Team } from "@/components/Team";
 import { Socials } from "@/components/Socials";
 import { Products } from "@/components/Products";
@@ -23,7 +24,8 @@ export default function Home() {
     <div className="h-full flex flex-col max-md:items-center justify-between">
       <div className="flex items-end max-md:items-center max-md:flex-col md:justify-between justify-center md:pr-[250px] max-md:gap-6 relative">
         <Hero />
-        <Rise3D />
+        {/* <Rise3D /> */}
+        <InteractiveRise />
         <div className="md:hidden">
           <Products onClick={handleProductClick} />
         </div>
