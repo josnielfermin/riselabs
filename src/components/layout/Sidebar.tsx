@@ -41,7 +41,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <aside className="hidden lg:flex flex-col justify-between w-[437px] lg:[&>*]:w-[263px] items-center relative">
+    <aside className="hidden md:flex flex-col justify-between w-[clamp(19.75rem,_14.708rem_+_10.503vw,_27.313rem)] md:[&>*]:w-[263px] items-center relative">
       <div className="absolute right-0 top-0 !w-[2px] h-[90vh] [background:linear-gradient(to_bottom,_#7B827C_0%,_rgba(123,130,124,0)_100%)]"></div>
       <div className="h-[116px] flex items-center">
         <Logo />

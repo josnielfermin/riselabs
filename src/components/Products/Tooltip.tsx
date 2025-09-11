@@ -26,7 +26,7 @@ export const Tooltip = ({
 
   return (
     <div
-      className={`pointer-events-auto absolute z-[9999] transition-opacity duration-300 ${
+      className={`pointer-events-auto absolute z-[9999] *:transition-all !duration-300 ${
         visible ? "opacity-100" : "opacity-0"
       }`}
       style={{ left: leftStyle, top: topStyle }}

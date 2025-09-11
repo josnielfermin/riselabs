@@ -18,7 +18,7 @@ export const Rise3D = ({
       alt="Rise Labs"
       width={width}
       height={height}
-      className={`${className} cursor-pointer relative lg:top-7 max-lg:w-32 max-lg:h-32 max-lg:mx-auto`}
+      className={`${className} cursor-pointer relative w-[clamp(8rem,_-0.125rem_+_16.927vw,_20.188rem)] h-[clamp(8rem,_-0.125rem_+_16.927vw,_20.188rem)] md:absolute 2xl:right-[20%] md:right-0 md:top-1/2 md:-translate-y-1/2 2xl:bottom-0 2xl:-translate-y-24 max-md:mx-auto`}
     />
   );
 };

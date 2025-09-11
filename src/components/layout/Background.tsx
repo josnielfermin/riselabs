@@ -189,7 +189,7 @@ export const Background = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute bottom-0 right-0 max-lg:hidden pointer-events-none select-none will-change-transform z-[-1]"
+      className="absolute bottom-0 right-0 max-md:hidden pointer-events-none select-none will-change-transform z-[-1]"
       style={{ transform: "translate(0px, 0px)" }}
     >
       <Image

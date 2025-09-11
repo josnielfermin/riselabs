@@ -5,24 +5,32 @@ import { Button } from "@/components/ui/Button";
 
 export const Header = () => {
   const webUrl = "https://t.me/Satsyxbt";
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   return (
-    <header className="w-full flex items-center justify-between lg:justify-end gap-4 px-8 py-4 h-[116px] max-lg:h-[103px] max-lg:border-b max-lg:border-base-5">
-      <div className="lg:hidden max-lg:mt-6">
+    <header className="w-full flex items-center justify-between md:justify-end gap-4 px-[clamp(1.875rem,_-0.208rem_+_4.34vw,_5rem)] py-4 h-[116px] max-md:h-[103px] max-md:border-b max-md:border-base-5">
+      <div className="md:hidden max-md:mt-6">
         <Logo />
       </div>
+      {/* <span className="icon-telegram-2 -ml-1"></span> */}
       <a
         href={webUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="max-lg:mt-6"
+        className="max-md:mt-6"
       >
         <Button
-          label={!isMobile && "Talk on Telegram"}
+          label={!isMobile && "TALK ON TELEGRAM"}
           radius="full"
           variant="filled"
-          rightIcon={"icon-telegram-2"}
+          size={isMobile ? "md" : "lg"}
+          rightIcon={
+            isMobile ? (
+              <span className="icon-telegram-2 !-ml-1.5"></span>
+            ) : (
+              "icon-telegram-2"
+            )
+          }
         />
       </a>
     </header>

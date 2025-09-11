@@ -3,8 +3,8 @@ import { Content } from "@/components/content";
 
 export const Team = () => {
   return (
-    <section className="flex flex-col max-lg:items-center gap-6">
-      <h3 className="text-2xl max-lg:text-lg max-lg:text-center font-medium text-white pb-4 relative">
+    <section className="flex flex-col max-md:items-center gap-6">
+      <h3 className="text-[clamp(1.125rem,_0.875rem_+_0.521vw,_1.5rem)] max-md:text-center font-medium text-white pb-4 relative">
         {Content.team.title}
         <div className="absolute left-0 bottom-0 h-[2px] w-[100%] [background:linear-gradient(to_right,_#7B827C_0%,_rgba(123,130,124,0)_100%)]"></div>
       </h3>
@@ -19,7 +19,7 @@ export const Team = () => {
             <Image
               src={member.image}
               alt={member.name}
-              className="w-14 h-14 rounded-full group-hover:border group-hover:border-primary-2 *:transition-all !duration-300 group-hover:-translate-y-7 group-hover:z-[1]"
+              className="w-[clamp(2.5rem,_1.833rem_+_1.389vw,_3.5rem)] h-[clamp(2.5rem,_1.833rem_+_1.389vw,_3.5rem)] rounded-full group-hover:border group-hover:border-primary-2 *:transition-all !duration-300 group-hover:-translate-y-7 group-hover:z-[1]"
               width={54}
               height={54}
             />

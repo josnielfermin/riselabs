@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Host_Grotesk } from "next/font/google";
 import "./globals.css";
-import { Background } from "@/components/layout/Background";
+import { Background } from "@/components/layout/BackgroundNew";
+import { BackgroundMobile } from "@/components/layout/BackgroundMobile";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Sidebar } from "@/components/layout/Sidebar";
@@ -24,16 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${hostGrotesk.className} antialiased lg:overflow-hidden`}
-      >
-        <Background />
-        <div className="flex min-h-screen text-white">
+      <body className={`${hostGrotesk.className} antialiased`}>
+        <div className="flex min-h-screen text-white overflow-hidden relative z-0">
+          <Background />
           <Sidebar />
-          <main className="flex-1 flex flex-col">
+          <main className="flex-1 flex flex-col overflow-hidden relative z-10">
+            <BackgroundMobile />
             <Header />
-            <div className="flex-1 mx-[80px] mb-[100px]">{children}</div>
-            <div className="lg:hidden">
+            <div className="flex-1 mx-[clamp(1.875rem,_-0.208rem_+_4.34vw,_5rem)] mb-[clamp(3.125rem,_1.042rem_+_4.34vw,_6.25rem)]">
+              {children}
+            </div>
+            <div className="md:hidden">
               <Footer />
             </div>
           </main>

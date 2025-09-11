@@ -20,7 +20,7 @@ export const Logo = ({ className, width = 84, height = 35.94 }: LogoProps) => {
         alt="Rise Labs"
         width={width}
         height={height}
-        className={`${className} cursor-pointer max-lg:hidden`}
+        className={`${className} cursor-pointer max-md:hidden`}
         onClick={() => router.push("/")}
       />
       <Image
@@ -29,7 +29,7 @@ export const Logo = ({ className, width = 84, height = 35.94 }: LogoProps) => {
         alt="Rise Labs"
         width={58}
         height={24}
-        className={`${className} cursor-pointer lg:hidden`}
+        className={`${className} cursor-pointer md:hidden`}
         onClick={() => router.push("/")}
       />
     </>
