@@ -7,14 +7,14 @@ interface ProductPreviewProps {
 
 export const ProductPreview = ({ product }: ProductPreviewProps) => {
   return (
-    <div className="relative md:w-[clamp(28.25rem,_16.792rem_+_23.872vw,_45.438rem)] md:h-[clamp(25.531rem,_15.177rem_+_21.571vw,_41.063rem)] w-full p-[clamp(1rem,_0rem_+_2.083vw,_2.5rem)] flex flex-col justify-between gap-[clamp(0.625rem,_-0.292rem_+_1.91vw,_2rem)]">
+    <div className="relative md:w-[clamp(28.25rem,_16.792rem_+_23.872vw,_45.438rem)] md:h-[clamp(25.531rem,_15.177rem_+_21.571vw,_41.063rem)] w-full p-[clamp(1rem,_0rem_+_2.083vw,_2.5rem)] flex flex-col justify-between gap-[clamp(0.625rem,_-0.292rem_+_1.91vw,_2rem)] bg-[rgba(21,20,17,0.70)]">
       <Image
         src={"/static/images/preview-product-bg.png"}
         alt={""}
         // width={727}
         // height={657}
         fill
-        className="absolute inset-0 object-cover z-[-1]"
+        className="absolute inset-0 object-cover z-[-1] max-md:hidden"
       />
       <h2 className="uppercase text-[clamp(1.5rem,_1.167rem_+_0.694vw,_2rem)] font-normal pb-[clamp(1rem,_0.333rem_+_1.389vw,_2rem)] relative">
         {product.title}
