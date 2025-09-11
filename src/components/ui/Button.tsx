@@ -101,9 +101,7 @@ export const Button: React.FC<ButtonProps> = ({
               }`}
             ></span>
           ) : (
-            <span
-              className={`btn-icon-left ${leftIcon} ${label ? "mr-2" : ""}`}
-            ></span>
+            <span className={`${leftIcon} ${label ? "mr-2" : ""}`}></span>
           )}
         </>
       )}
@@ -131,9 +129,7 @@ export const Button: React.FC<ButtonProps> = ({
               }`}
             ></span>
           ) : (
-            <span
-              className={`btn-icon-right ${rightIcon} ${label ? "ml-2" : ""}`}
-            ></span>
+            <span className={`${rightIcon} ${label ? "ml-2" : ""}`}></span>
           )}
         </>
       )}

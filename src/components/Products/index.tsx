@@ -17,7 +17,7 @@ export const Products = ({ onHover, onLeave }: ProductsProps) => {
           {Content.products.title}
           <div className="absolute left-0 bottom-0 h-[2px] w-[90%] [background:linear-gradient(to_right,_#7B827C_0%,_rgba(123,130,124,0)_100%)]"></div>
         </h3>
-        <p className="text-lg max-lg:text-sm max-lg:text-center font-normal text-base-2">
+        <p className="text-lg max-lg:text-sm max-lg:text-center font-normal text-base-2 max-lg:max-w-[256px]">
           {Content.products.description}
         </p>
       </div>
