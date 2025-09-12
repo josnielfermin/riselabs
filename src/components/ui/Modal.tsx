@@ -65,7 +65,7 @@ export const Modal = ({
   return ReactDOM.createPortal(
     <div
       id="modal"
-      className={`modal fixed z-[99999] inset-0 flex items-end sm:items-center justify-center bg-black bg-opacity-75 transition-opacity duration-300 ${overlayOpacityClass} ${className}`}
+      className={`modal fixed z-[99999] inset-0 flex items-end md:items-center justify-center bg-[rgba(0,_0,_0,_0.70)] *:transition-all !duration-300 ${overlayOpacityClass} ${className}`}
       onClick={handleCloseModal}
       aria-hidden={!openModal}
     >
@@ -73,10 +73,15 @@ export const Modal = ({
         role="dialog"
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
-        className={`w-full sm:max-w-3xl bg-transparent sm:bg-transparent p-0 sm:p-0 pointer-events-none`}
+        className={`w-full md:max-w-3xl bg-transparent md:bg-transparent p-0 md:p-0 relative`}
       >
+        <span
+          className="icon-x absolute top-9 right-10 cursor-pointer text-base-3 text-lg z-[5] w-6 h-6 flex items-center justify-center"
+          onClick={handleCloseModal}
+          onTouchEnd={handleCloseModal}
+        ></span>
         <div
-          className={`pointer-events-auto bg-[#0b0b0b] border border-gray-800 rounded-t-lg sm:rounded-lg shadow-lg mx-auto max-w-full sm:my-8 transform transition-transform duration-300 ${panelTransformClass}`}
+          className={`pointer-events-auto bg-[rgba(21,_20,_17,_0.70)] backdrop-blur-xl md:rounded-lg shadow-lg mx-auto max-w-full md:my-8 transform *:transition-all !duration-300 ${panelTransformClass}`}
           style={{
             // on mobile occupy most of width and height; on desktop allow content to size itself
             width: "100%",
@@ -85,7 +90,7 @@ export const Modal = ({
             margin: 0,
           }}
         >
-          <div className="p-4 sm:p-6">{children}</div>
+          <div className="p-4 md:p-6">{children}</div>
         </div>
       </div>
     </div>,

@@ -228,12 +228,20 @@ export const Background = () => {
       className="absolute bottom-0 right-0 max-md:hidden pointer-events-none touch-none select-none will-change-transform z-[-1]"
       style={{ transform: "translate(0px, 0px)" }}
     >
-      <Image
+      {/* <Image
         src="/static/images/bg-decorator.png"
         alt=""
         width={1521.233}
         height={942.691}
         priority={false}
+      /> */}
+      <Image
+        src="/static/images/bg-decorator-big.png"
+        alt=""
+        width={3863}
+        height={2934}
+        priority={false}
+        className="rounded-full"
       />
     </div>
   );
