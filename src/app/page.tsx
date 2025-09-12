@@ -1,8 +1,8 @@
 "use client";
 
 import { Hero } from "@/components/Hero";
-import { Rise3D } from "@/components/Rise3D";
-import InteractiveRise from "@/components/Rise3D/InteractiveRise";
+// import { Rise3D } from "@/components/Rise3D";
+// import InteractiveRise from "@/components/Rise3D/InteractiveRise";
 import InteractiveRise2 from "@/components/Rise3D/InteractiveRise2";
 import { Team } from "@/components/Team";
 import { Socials } from "@/components/Socials";
