@@ -240,7 +240,7 @@ export const Background = () => {
         alt=""
         width={3863}
         height={2934}
-        priority={false}
+        priority={true}
         className="rounded-full"
       />
     </div>
