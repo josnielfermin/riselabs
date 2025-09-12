@@ -15,7 +15,6 @@ export interface ButtonProps
   label?: string | React.ReactNode;
   loadingLabel?: string;
   disabled?: boolean;
-  href?: string;
   radius?: ButtonRadius;
   loading?: boolean;
   fullWidth?: boolean;
@@ -30,7 +29,6 @@ export const Button: React.FC<ButtonProps> = ({
   className = "",
   label,
   disabled = false,
-  href,
   radius = "md",
   loading,
   loadingLabel = "",

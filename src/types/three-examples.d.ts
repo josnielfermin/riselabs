@@ -5,8 +5,8 @@ declare module "three/examples/jsm/loaders/GLTFLoader" {
     scene: THREE.Object3D;
     scenes: THREE.Object3D[];
     animations: THREE.AnimationClip[];
-    parser?: any;
-    userData?: any;
+    parser?: unknown;
+    userData?: unknown;
   }
 
   export class GLTFLoader extends THREE.Loader {
@@ -33,7 +33,7 @@ declare module "three/examples/jsm/loaders/DRACOLoader" {
   import * as THREE from "three";
   export class DRACOLoader extends THREE.Loader {
     setDecoderPath(path: string): void;
-    setDecoderConfig(config: any): void;
+    setDecoderConfig(config: unknown): void;
     dispose(): void;
     decodeDracoFile(
       arrayBuffer: ArrayBuffer,
