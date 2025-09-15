@@ -236,7 +236,7 @@ export const Background = () => {
         priority={false}
       /> */}
       <Image
-        src="/static/images/bg-decorator-big.png"
+        src="/static/images/bg-decorator-big2.png"
         alt=""
         width={3863}
         height={2934}
