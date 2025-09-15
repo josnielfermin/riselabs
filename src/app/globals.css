@@ -3,8 +3,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Force dark theme colors */
+  --background: #151411;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -16,12 +17,8 @@
   --breakpoint-xs: 32rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #151411;
-    --foreground: #ededed;
-  }
-}
+/* Always use dark theme — removed prefers-color-scheme media queries so
+   the site consistently uses the dark palette regardless of OS setting. */
 
 body {
   background: var(--background);
