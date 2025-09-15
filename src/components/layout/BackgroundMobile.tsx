@@ -15,7 +15,7 @@ export const BackgroundMobile = () => {
         alt=""
         width={1198.33}
         height={742.59}
-        priority={false}
+        priority={true}
       />
     </div>
   );
