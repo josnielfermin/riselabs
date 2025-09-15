@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  reactStrictMode: true,
+  productionBrowserSourceMaps: true,
 };
 
 export default nextConfig;

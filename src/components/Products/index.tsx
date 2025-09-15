@@ -32,6 +32,7 @@ export const Products = ({ onHover, onLeave, onClick }: ProductsProps) => {
             onClick={() => onClick?.(item)}
             role={onClick ? "button" : undefined}
             tabIndex={onClick ? 0 : undefined}
+            aria-label={item.title}
             onKeyDown={(e) => {
               if (onClick && (e.key === "Enter" || e.key === " ")) {
                 e.preventDefault();
@@ -68,7 +69,7 @@ export const Products = ({ onHover, onLeave, onClick }: ProductsProps) => {
               src={"/static/images/product-gradient.png"}
               alt={""}
               fill
-              className="w-full h-full max-md:hidden absolute z-[-1] group-hover:opacity-100 opacity-0 *:transition-all !duration-300"
+              className="max-md:hidden absolute z-[-1] group-hover:opacity-100 opacity-0 *:transition-all !duration-300"
             />
           </div>
         ))}

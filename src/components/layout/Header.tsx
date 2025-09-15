@@ -18,9 +18,11 @@ export const Header = () => {
         target="_blank"
         rel="noopener noreferrer"
         className="max-md:mt-6"
+        aria-label="Talk on Telegram"
       >
         <Button
           label={!isMobile && "TALK ON TELEGRAM"}
+          ariaLabel="Talk on Telegram"
           radius="full"
           variant="filled"
           size={isMobile ? "md" : "lg"}

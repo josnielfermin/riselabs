@@ -18,6 +18,7 @@ export interface ButtonProps
   radius?: ButtonRadius;
   loading?: boolean;
   fullWidth?: boolean;
+  ariaLabel: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -34,6 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
   loadingLabel = "",
   fullWidth = false,
   onClick,
+  ariaLabel,
   ...props
 }) => {
   const base =
@@ -89,6 +91,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={composed}
       disabled={disabled}
       onClick={onClick}
+      aria-label={ariaLabel}
       {...props}
     >
       {variant === "filled" && (
