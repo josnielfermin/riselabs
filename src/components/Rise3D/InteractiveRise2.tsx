@@ -264,9 +264,10 @@ export const InteractiveRise2 = () => {
 
   return (
     <div
+      // w-[clamp(10rem,_-0.125rem_+_20.927vw,_26.188rem)] h-[clamp(10rem,_-0.125rem_+_20.927vw,_26.188rem)]
       ref={containerRef}
       // keep same responsive coordinates as existing Rise3D image but increase size to avoid clipping
-      className="cursor-pointer relative w-[clamp(10rem,_-0.125rem_+_20.927vw,_26.188rem)] h-[clamp(10rem,_-0.125rem_+_20.927vw,_26.188rem)] md:absolute 2xl:right-[20%] md:right-0 md:top-1/2 md:-translate-y-1/2 2xl:bottom-0 2xl:-translate-y-24 max-md:mx-auto"
+      className="cursor-pointer relative w-[clamp(15.625rem,_5.208rem_+_21.701vw,_31.25rem)] h-[clamp(15.625rem,_5.208rem_+_21.701vw,_31.25rem)] md:absolute 2xl:right-[15%] md:right-0 md:top-1/2 md:-translate-y-1/2 2xl:bottom-0 2xl:-translate-y-52 max-md:mx-auto"
       aria-hidden={true}
     />
   );
