@@ -34,8 +34,8 @@ export default function Home() {
       <div className="flex items-end max-md:items-center max-md:flex-col md:justify-between justify-center md:pr-[250px] max-md:gap-0 relative">
         <Hero />
         {/* <Rise3D /> */}
-        {/* <InteractiveRise2 /> */}
-        <InteractiveRise />
+        <InteractiveRise2 />
+        {/* <InteractiveRise /> */}
         <div className="md:hidden">
           <Products onClick={handleProductClick} />
         </div>

@@ -19,6 +19,13 @@ export const InteractiveRise2 = () => {
     // keep references so we can remove listeners properly
     let onPointerMove: ((ev: PointerEvent) => void) | null = null;
     let onResize: (() => void) | null = null;
+    let onPointerEnter: (() => void) | null = null;
+    let onPointerLeave: (() => void) | null = null;
+    let inactivityTimeout: number | null = null;
+    // return animation state
+    let returningStartTime: number | null = null;
+    const returningDuration = 1000; // ms
+    let returningStartValues: { yaw: number; pitch: number } | null = null;
 
     const start = () => {
       if (started) return;
@@ -161,6 +168,13 @@ export const InteractiveRise2 = () => {
 
       // pointer handling attached to container for scoped interaction
       onPointerMove = (ev: PointerEvent) => {
+        // cancel inactivity timer and any automated return on pointer activity
+        if (inactivityTimeout) {
+          clearTimeout(inactivityTimeout);
+          inactivityTimeout = null;
+        }
+        returningStartTime = null;
+        returningStartValues = null;
         if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
         const x = (ev.clientX - rect.left) / rect.width; // 0..1
@@ -174,6 +188,29 @@ export const InteractiveRise2 = () => {
       };
 
       containerRef.current.addEventListener("pointermove", onPointerMove);
+
+      // pointer enter/leave to control inactivity timer
+      onPointerEnter = () => {
+        if (inactivityTimeout) {
+          clearTimeout(inactivityTimeout);
+          inactivityTimeout = null;
+        }
+      };
+      onPointerLeave = () => {
+        if (inactivityTimeout) {
+          clearTimeout(inactivityTimeout);
+        }
+        inactivityTimeout = window.setTimeout(() => {
+          // start smooth returning animation: capture current actual values and animate to zero
+          returningStartTime = performance.now();
+          returningStartValues = { yaw: state.yaw, pitch: state.pitch };
+          // ensure targets are zero so interactions don't fight the return
+          state.targetYaw = 0;
+          state.targetPitch = 0;
+        }, 5000);
+      };
+      containerRef.current.addEventListener("pointerenter", onPointerEnter);
+      containerRef.current.addEventListener("pointerleave", onPointerLeave);
 
       onResize = () => {
         if (!containerRef.current || !renderer || !camera) return;
@@ -193,10 +230,25 @@ export const InteractiveRise2 = () => {
           return;
         }
 
-        // eased interpolation
-        const ease = 0.12;
-        state.yaw += (state.targetYaw - state.yaw) * ease;
-        state.pitch += (state.targetPitch - state.pitch) * ease;
+        // if we're in returning phase, interpolate actuals over returningDuration
+        if (returningStartTime && returningStartValues) {
+          const now = performance.now();
+          const t = Math.min(1, (now - returningStartTime) / returningDuration);
+          const alpha = t * t * (3 - 2 * t); // smoothstep
+          state.yaw = returningStartValues.yaw * (1 - alpha);
+          state.pitch = returningStartValues.pitch * (1 - alpha);
+          if (t >= 1) {
+            returningStartTime = null;
+            returningStartValues = null;
+            state.yaw = 0;
+            state.pitch = 0;
+          }
+        } else {
+          // eased interpolation
+          const ease = 0.12;
+          state.yaw += (state.targetYaw - state.yaw) * ease;
+          state.pitch += (state.targetPitch - state.pitch) * ease;
+        }
 
         // clamp pitch so model never flips
         state.pitch = Math.max(-maxPitch, Math.min(maxPitch, state.pitch));
@@ -234,9 +286,28 @@ export const InteractiveRise2 = () => {
             "pointermove",
             onPointerMove
           );
+        if (onPointerEnter)
+          containerRef.current.removeEventListener(
+            "pointerenter",
+            onPointerEnter
+          );
+        if (onPointerLeave)
+          containerRef.current.removeEventListener(
+            "pointerleave",
+            onPointerLeave
+          );
       }
 
       if (onResize) window.removeEventListener("resize", onResize);
+
+      if (inactivityTimeout) {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = null;
+      }
+
+      // cancel any returning animation
+      returningStartTime = null;
+      returningStartValues = null;
 
       if (renderer) {
         try {

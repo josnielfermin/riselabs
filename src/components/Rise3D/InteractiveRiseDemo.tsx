@@ -41,6 +41,23 @@ export const InteractiveRise = () => {
     // keep references so we can remove listeners properly
     let onPointerMove: ((ev: PointerEvent) => void) | null = null;
     let onResize: (() => void) | null = null;
+    let onPointerEnter: (() => void) | null = null;
+    let onPointerLeave: (() => void) | null = null;
+    let inactivityTimeout: number | null = null;
+    // return animation state (when inactive -> animate back to origin over duration)
+    let returningStartTime: number | null = null;
+    const returningDuration = 1000; // ms
+    let returningStartValues: {
+      yaw: number;
+      pitch: number;
+      offsetZ: number;
+      offsetZ2: number;
+      offsetZ3: number;
+      offsetZ4: number;
+      offsetZ5: number;
+      offsetZ6: number;
+      offsetZ7: number;
+    } | null = null;
 
     const start = () => {
       if (started) return;
@@ -464,6 +481,14 @@ export const InteractiveRise = () => {
 
       // pointer handling attached to container for scoped interaction
       onPointerMove = (ev: PointerEvent) => {
+        // any pointer activity cancels the inactivity reset timer
+        if (inactivityTimeout) {
+          clearTimeout(inactivityTimeout);
+          inactivityTimeout = null;
+        }
+        // cancel any ongoing automated return to origin
+        returningStartTime = null;
+        returningStartValues = null;
         if (!containerRef.current) return;
         const rect = containerRef.current.getBoundingClientRect();
         const x = (ev.clientX - rect.left) / rect.width; // 0..1
@@ -492,6 +517,46 @@ export const InteractiveRise = () => {
 
       containerRef.current.addEventListener("pointermove", onPointerMove);
 
+      // start inactivity timer when pointer leaves; cancel when pointer enters or moves
+      onPointerEnter = () => {
+        if (inactivityTimeout) {
+          clearTimeout(inactivityTimeout);
+          inactivityTimeout = null;
+        }
+      };
+      onPointerLeave = () => {
+        if (inactivityTimeout) {
+          clearTimeout(inactivityTimeout);
+        }
+        inactivityTimeout = window.setTimeout(() => {
+          // start a smooth return: capture current actual state and animate actual values to zero over returningDuration
+          returningStartTime = performance.now();
+          returningStartValues = {
+            yaw: state.yaw,
+            pitch: state.pitch,
+            offsetZ: state.offsetZ,
+            offsetZ2: state.offsetZ2,
+            offsetZ3: state.offsetZ3,
+            offsetZ4: state.offsetZ4,
+            offsetZ5: state.offsetZ5,
+            offsetZ6: state.offsetZ6,
+            offsetZ7: state.offsetZ7,
+          };
+          // ensure targets are zero so pointer interactions don't fight the return
+          state.targetYaw = 0;
+          state.targetPitch = 0;
+          state.targetOffsetZ = 0;
+          state.targetOffsetZ2 = 0;
+          state.targetOffsetZ3 = 0;
+          state.targetOffsetZ4 = 0;
+          state.targetOffsetZ5 = 0;
+          state.targetOffsetZ6 = 0;
+          state.targetOffsetZ7 = 0;
+        }, 5000);
+      };
+      containerRef.current.addEventListener("pointerenter", onPointerEnter);
+      containerRef.current.addEventListener("pointerleave", onPointerLeave);
+
       onResize = () => {
         if (!containerRef.current || !renderer || !camera) return;
         const w = containerRef.current.clientWidth || 300;
@@ -510,24 +575,51 @@ export const InteractiveRise = () => {
           return;
         }
 
-        // eased interpolation
-        const ease = 0.12;
-        state.yaw += (state.targetYaw - state.yaw) * ease;
-        state.pitch += (state.targetPitch - state.pitch) * ease;
-        // interpolate cubo1 offset
-        state.offsetZ += (state.targetOffsetZ - state.offsetZ) * ease;
-        // interpolate cubo2 offset (separate smoothing)
-        state.offsetZ2 += (state.targetOffsetZ2 - state.offsetZ2) * ease;
-        // interpolate cubo3 offset
-        state.offsetZ3 += (state.targetOffsetZ3 - state.offsetZ3) * ease;
-        // interpolate cubo4 offset
-        state.offsetZ4 += (state.targetOffsetZ4 - state.offsetZ4) * ease;
-        // interpolate cubo5 offset
-        state.offsetZ5 += (state.targetOffsetZ5 - state.offsetZ5) * ease;
-        // interpolate cubo6 offset
-        state.offsetZ6 += (state.targetOffsetZ6 - state.offsetZ6) * ease;
-        // interpolate cubo7 offset
-        state.offsetZ7 += (state.targetOffsetZ7 - state.offsetZ7) * ease;
+        // If we are in the automated returning phase, interpolate actual values based on elapsed time so the
+        // transition finishes in approximately returningDuration ms. Otherwise use the normal easing.
+        if (returningStartTime && returningStartValues) {
+          const now = performance.now();
+          const t = Math.min(1, (now - returningStartTime) / returningDuration);
+          // smoothstep easing for nicer feel
+          const alpha = t * t * (3 - 2 * t);
+          state.yaw = returningStartValues.yaw * (1 - alpha);
+          state.pitch = returningStartValues.pitch * (1 - alpha);
+          state.offsetZ = returningStartValues.offsetZ * (1 - alpha);
+          state.offsetZ2 = returningStartValues.offsetZ2 * (1 - alpha);
+          state.offsetZ3 = returningStartValues.offsetZ3 * (1 - alpha);
+          state.offsetZ4 = returningStartValues.offsetZ4 * (1 - alpha);
+          state.offsetZ5 = returningStartValues.offsetZ5 * (1 - alpha);
+          state.offsetZ6 = returningStartValues.offsetZ6 * (1 - alpha);
+          state.offsetZ7 = returningStartValues.offsetZ7 * (1 - alpha);
+          if (t >= 1) {
+            // finished returning
+            returningStartTime = null;
+            returningStartValues = null;
+            // ensure final exact zeros
+            state.yaw = 0;
+            state.pitch = 0;
+            state.offsetZ = 0;
+            state.offsetZ2 = 0;
+            state.offsetZ3 = 0;
+            state.offsetZ4 = 0;
+            state.offsetZ5 = 0;
+            state.offsetZ6 = 0;
+            state.offsetZ7 = 0;
+          }
+        } else {
+          // eased interpolation
+          const ease = 0.12;
+          state.yaw += (state.targetYaw - state.yaw) * ease;
+          state.pitch += (state.targetPitch - state.pitch) * ease;
+          // interpolate cubo offsets
+          state.offsetZ += (state.targetOffsetZ - state.offsetZ) * ease;
+          state.offsetZ2 += (state.targetOffsetZ2 - state.offsetZ2) * ease;
+          state.offsetZ3 += (state.targetOffsetZ3 - state.offsetZ3) * ease;
+          state.offsetZ4 += (state.targetOffsetZ4 - state.offsetZ4) * ease;
+          state.offsetZ5 += (state.targetOffsetZ5 - state.offsetZ5) * ease;
+          state.offsetZ6 += (state.targetOffsetZ6 - state.offsetZ6) * ease;
+          state.offsetZ7 += (state.targetOffsetZ7 - state.offsetZ7) * ease;
+        }
 
         // clamp pitch so model never flips
         state.pitch = Math.max(-maxPitch, Math.min(maxPitch, state.pitch));
@@ -595,9 +687,24 @@ export const InteractiveRise = () => {
             "pointermove",
             onPointerMove
           );
+        if (onPointerEnter)
+          containerRef.current.removeEventListener(
+            "pointerenter",
+            onPointerEnter
+          );
+        if (onPointerLeave)
+          containerRef.current.removeEventListener(
+            "pointerleave",
+            onPointerLeave
+          );
       }
 
       if (onResize) window.removeEventListener("resize", onResize);
+
+      if (inactivityTimeout) {
+        clearTimeout(inactivityTimeout);
+        inactivityTimeout = null;
+      }
 
       if (renderer) {
         try {
