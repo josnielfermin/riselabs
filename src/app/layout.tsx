@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${hostGrotesk.className} antialiased`}>
-        <div className="flex min-h-screen text-white overflow-hidden relative z-0">
+        <div className="flex min-h-screen text-white overflow-hidden relative z-0 max-w-[1920px] mx-auto">
           <Background />
           <Sidebar />
           <main className="flex-1 flex flex-col overflow-hidden relative z-10">
